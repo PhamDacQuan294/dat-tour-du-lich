@@ -1,6 +1,6 @@
 // Ve ra danh sach tour
 const drawListTour = () => {
-  fetch("http://localhost:3000/cart/list-json", {
+  fetch("/cart/list-json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -93,3 +93,42 @@ const updateQuantityInCart = () => {
 // Lấy data và in ra giao diện
 drawListTour();
 // Hết Lấy data và in ra giao diện
+
+
+// Đặt tour
+const formOrder = document.querySelector("[form-order]");
+if(formOrder) {
+  formOrder.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const fullName = e.target.elements.fullName.value;
+    const phone = e.target.elements.phone.value;
+    const note = e.target.elements.note.value;
+
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    const data = {
+      info: {
+        fullName: fullName,
+        phone: phone,
+        note: note
+      },
+      cart: cart
+    };
+
+    fetch("/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if(data.code == 200) {
+          console.log(data.message)
+        }
+      })
+  })
+}
+// Hết Đặt tour
