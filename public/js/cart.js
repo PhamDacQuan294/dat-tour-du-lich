@@ -94,7 +94,6 @@ const updateQuantityInCart = () => {
 drawListTour();
 // Hết Lấy data và in ra giao diện
 
-
 // Đặt tour
 const formOrder = document.querySelector("[form-order]");
 if(formOrder) {
