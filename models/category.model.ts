@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database";
+import slugify from "slugify";
 
 const Category = sequelize.define("Category", {
   id: {
@@ -26,7 +27,7 @@ const Category = sequelize.define("Category", {
   },
   slug: {
     type: DataTypes.STRING(255),
-    allowNull: false,
+    allowNull: true,
   },
   deleted: {
     type: DataTypes.BOOLEAN,
@@ -39,5 +40,13 @@ const Category = sequelize.define("Category", {
   tableName: 'categories',
   timestamps: true, // Tự động quản lý createdAt và updatedAt
 });
+
+Category.beforeCreate((category) => {
+  category["slug"] = slugify(`${category["title"]}`, {
+    lower: true,
+    strict: true
+  });
+});
+
 
 export default Category;
