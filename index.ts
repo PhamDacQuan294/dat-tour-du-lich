@@ -4,6 +4,8 @@ import moment from "moment";
 import sequelize from "./config/database";
 import clientRoutes from "./routes/client/index.route";
 import bodyParser from "body-parser";
+import { systemConfig } from "./config/system";
+import adminRoutes from "./routes/admin/index.route";
 
 dotenv.config();
 
@@ -21,9 +23,13 @@ app.set("view engine", "pug");
 
 // App Local Variables
 app.locals.moment = moment;
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 // Client Routes
 clientRoutes(app);
+
+// Admin Routes
+adminRoutes(app);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
