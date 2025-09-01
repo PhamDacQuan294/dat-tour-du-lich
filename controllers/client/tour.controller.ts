@@ -61,3 +61,4 @@ export const detail = async (req: Request, res: Response) => {
     tourDetail: tourDetail
   });
 };
+
