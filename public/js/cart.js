@@ -126,7 +126,7 @@ if(formOrder) {
       .then(res => res.json())
       .then(data => {
         if(data.code == 200) {
-          console.log(data.message)
+          localStorage.removeItem("cart");
         }
       })
   })
