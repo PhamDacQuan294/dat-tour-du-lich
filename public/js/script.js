@@ -82,10 +82,10 @@ if(formAddToCart) {
       localStorage.setItem("cart", JSON.stringify(cart));
 
       alertAddCartSuccess();
+
+      showMiniCart();
     }
   });
 }
 
 // End carts
-
-

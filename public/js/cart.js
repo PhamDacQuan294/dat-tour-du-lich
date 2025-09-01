@@ -84,6 +84,12 @@ const updateQuantityInCart = () => {
 
       localStorage.setItem("cart", JSON.stringify(cart));
 
+      const miniCart = document.querySelector("[mini-cart]");
+
+      if(miniCart) {
+        miniCart.innerHTML = quantity;
+      }
+
       drawListTour();
     });
   });
